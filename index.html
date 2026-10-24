@@ -1,1 +1,164 @@
-<h1>My first 1 Project in DevOps</h1>
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linux Fortune</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #111827;
+            color: #e5e7eb;
+            font-family: monospace;
+        }
+
+        .terminal {
+            width: 90%;
+            max-width: 750px;
+            background: #030712;
+            border: 1px solid #374151;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px #0008;
+        }
+
+        .header {
+            background: #1f2937;
+            padding: 14px 18px;
+            color: #9ca3af;
+            border-bottom: 1px solid #374151;
+        }
+
+        .dots {
+            color: #f87171;
+            letter-spacing: 4px;
+        }
+
+        .content {
+            padding: 35px 28px;
+        }
+
+        .green {
+            color: #4ade80;
+        }
+
+        .blue {
+            color: #60a5fa;
+        }
+
+        #quote {
+            font-size: 20px;
+            line-height: 1.8;
+            margin: 28px 0;
+            min-height: 100px;
+            white-space: pre-wrap;
+        }
+
+        button {
+            background: #16a34a;
+            color: white;
+            border: none;
+            padding: 13px 20px;
+            font-family: monospace;
+            font-size: 15px;
+            cursor: pointer;
+            border-radius: 6px;
+            margin-top: 12px;
+        }
+
+        button:hover {
+            background: #15803d;
+        }
+
+        .footer {
+            color: #6b7280;
+            font-size: 12px;
+            margin-top: 28px;
+        }
+
+        @media (max-width: 480px) {
+            .content {
+                padding: 24px 18px;
+            }
+
+            #quote {
+                font-size: 17px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="terminal">
+    <div class="header">
+        <span class="dots">● ● ●</span>
+        &nbsp; user@linux: ~/fortune
+    </div>
+
+    <div class="content">
+        <p class="green">user@linux:~$ fortune</p>
+
+        <p class="blue">Your daily dose of wisdom...</p>
+
+        <div id="quote">
+            Loading your fortune...
+        </div>
+
+        <button onclick="newFortune()">
+            $ Get Another Fortune
+        </button>
+
+        <p class="footer">
+            Linux Fortune Terminal | Powered by randomness
+        </p>
+    </div>
+</div>
+
+<script>
+    const fortunes = [
+        "The best way to predict the future is to create it.",
+        "In Linux, everything is a file. In life, everything is a lesson.",
+        "A bug is never just a mistake. It represents something you don't yet understand.",
+        "Talk is cheap. Show me the code. — Linus Torvalds",
+        "It works on my machine. Therefore, the machine is correct.",
+        "The quieter you become, the more you are able to hear.",
+        "First, solve the problem. Then, write the code.",
+        "rm -rf doubt; mkdir confidence",
+        "Keep calm and sudo your dreams.",
+        "A journey of a thousand miles begins with a single command.",
+        "There are 10 types of people: those who understand binary and those who don't.",
+        "When in doubt, read the man page.",
+        "Every expert was once a beginner who refused to give up.",
+        "Segmentation fault: reality not found.",
+        "The only way to learn Linux is to break things and fix them.",
+        "Don't fear errors. Fear never trying.",
+        "sudo make me a sandwich",
+        "Patience is a virtue. Especially when apt is updating.",
+        "Success is a script that you keep improving.",
+        "Life is short. Automate everything."
+    ];
+
+    function newFortune() {
+        const quote = document.getElementById("quote");
+        const randomIndex = Math.floor(Math.random() * fortunes.length);
+
+        quote.textContent = "> " + fortunes[randomIndex];
+    }
+
+    newFortune();
+</script>
+
+</body>
+</html>
+```

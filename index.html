@@ -2,161 +2,316 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Linux Fortunee</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Riddle Terminal</title>
 
-    <style>
-        * {
-            box-sizing: border-box;
-        }
+<style>
+* {
+    box-sizing: border-box;
+}
 
-        body {
-            margin: 0;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: #111827;
-            color: #e5e7eb;
-            font-family: monospace;
-        }
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: #0b1120;
+    color: #e5e7eb;
+    font-family: monospace;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
 
-        .terminal {
-            width: 90%;
-            max-width: 750px;
-            background: #030712;
-            border: 1px solid #374151;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 20px 60px #0008;
-        }
+.terminal {
+    width: 100%;
+    max-width: 720px;
+    background: #111827;
+    border: 1px solid #374151;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 15px 50px #0008;
+}
 
-        .header {
-            background: #1f2937;
-            padding: 14px 18px;
-            color: #9ca3af;
-            border-bottom: 1px solid #374151;
-        }
+.header {
+    background: #1f2937;
+    padding: 15px;
+    border-bottom: 1px solid #374151;
+    color: #9ca3af;
+}
 
-        .dots {
-            color: #f87171;
-            letter-spacing: 4px;
-        }
+.dots {
+    color: #4ade80;
+    margin-right: 12px;
+}
 
-        .content {
-            padding: 35px 28px;
-        }
+.content {
+    padding: 30px;
+}
 
-        .green {
-            color: #4ade80;
-        }
+.green {
+    color: #4ade80;
+}
 
-        .blue {
-            color: #60a5fa;
-        }
+.blue {
+    color: #60a5fa;
+}
 
-        #quote {
-            font-size: 20px;
-            line-height: 1.8;
-            margin: 28px 0;
-            min-height: 100px;
-            white-space: pre-wrap;
-        }
+h1 {
+    font-size: 27px;
+    margin-bottom: 10px;
+}
 
-        button {
-            background: #16a34a;
-            color: white;
-            border: none;
-            padding: 13px 20px;
-            font-family: monospace;
-            font-size: 15px;
-            cursor: pointer;
-            border-radius: 6px;
-            margin-top: 12px;
-        }
+.riddle-box {
+    background: #030712;
+    border: 1px solid #374151;
+    border-radius: 8px;
+    padding: 25px;
+    margin: 25px 0;
+}
 
-        button:hover {
-            background: #15803d;
-        }
+#riddle {
+    font-size: 19px;
+    line-height: 1.8;
+    min-height: 85px;
+}
 
-        .footer {
-            color: #6b7280;
-            font-size: 12px;
-            margin-top: 28px;
-        }
+#answer {
+    display: none;
+    color: #4ade80;
+    font-size: 17px;
+    margin-top: 18px;
+    line-height: 1.6;
+}
 
-        @media (max-width: 480px) {
-            .content {
-                padding: 24px 18px;
-            }
+button {
+    padding: 12px 16px;
+    margin: 5px 5px 5px 0;
+    border: none;
+    border-radius: 5px;
+    font-family: monospace;
+    font-size: 14px;
+    cursor: pointer;
+    background: #16a34a;
+    color: white;
+}
 
-            #quote {
-                font-size: 17px;
-            }
-        }
-    </style>
+button:hover {
+    background: #15803d;
+}
+
+.secondary {
+    background: #374151;
+}
+
+.secondary:hover {
+    background: #4b5563;
+}
+
+.stats {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+    color: #9ca3af;
+    margin-top: 25px;
+}
+
+.footer {
+    color: #6b7280;
+    font-size: 12px;
+    margin-top: 25px;
+}
+
+@media (max-width: 480px) {
+    .content {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 23px;
+    }
+
+    #riddle {
+        font-size: 17px;
+    }
+}
+</style>
 </head>
 
 <body>
 
 <div class="terminal">
+
     <div class="header">
         <span class="dots">● ● ●</span>
-        &nbsp; user@linux: ~/fortune
+        user@linux: ~/riddles
     </div>
 
     <div class="content">
-        <p class="green">user@linux:~$ fortune</p>
 
-        <p class="blue">Your daily Lovedose of wisdom...</p>
+        <p class="green">user@linux:~$ ./riddle.sh</p>
 
-        <div id="quote">
-            Loading your fortune...
+        <h1>🧩 Riddle Terminal</h1>
+
+        <p class="blue">
+            Test your brain. Crack the code. Solve the riddle.
+        </p>
+
+        <div class="riddle-box">
+            <p class="green" id="number">RIDDLE #1</p>
+
+            <div id="riddle">
+                Loading riddle...
+            </div>
+
+            <div id="answer"></div>
         </div>
 
-        <button onclick="newFortune()">
-            $ Get Another Fortune
+        <button onclick="showAnswer()">
+            Reveal Answer
         </button>
 
+        <button class="secondary" onclick="nextRiddle()">
+            Next Riddle →
+        </button>
+
+        <div class="stats">
+            <span>Riddles solved: <span id="count">0</span></span>
+            <span>Available: <span id="total">0</span></span>
+        </div>
+
         <p class="footer">
-            Linux Fortune Terminal | Powered by randomness
+            SYSTEM STATUS: ONLINE | THINK BEFORE YOU PEEK!
         </p>
+
     </div>
 </div>
 
 <script>
-    const fortunes = [
-        "The best way to predict the future is to create it.",
-        "In Linux, everything is a file. In life, everything is a lesson.",
-        "A bug is never just a mistake. It represents something you don't yet understand.",
-        "Talk is cheap. Show me the code. — Linus Torvalds",
-        "It works on my machine. Therefore, the machine is correct.",
-        "The quieter you become, the more you are able to hear.",
-        "First, solve the problem. Then, write the code.",
-        "rm -rf doubt; mkdir confidence",
-        "Keep calm and sudo your dreams.",
-        "A journey of a thousand miles begins with a single command.",
-        "There are 10 types of people: those who understand binary and those who don't.",
-        "When in doubt, read the man page.",
-        "Every expert was once a beginner who refused to give up.",
-        "Segmentation fault: reality not found.",
-        "The only way to learn Linux is to break things and fix them.",
-        "Don't fear errors. Fear never trying.",
-        "sudo make me a sandwich",
-        "Patience is a virtue. Especially when apt is updating.",
-        "Success is a script that you keep improving.",
-        "Life is short. Automate everything."
-    ];
+const riddles = [
+    {
+        question: "What has keys but cannot open locks?",
+        answer: "A piano."
+    },
+    {
+        question: "What has to be broken before you can use it?",
+        answer: "An egg."
+    },
+    {
+        question: "I speak without a mouth and hear without ears. What am I?",
+        answer: "An echo."
+    },
+    {
+        question: "What gets wetter the more it dries?",
+        answer: "A towel."
+    },
+    {
+        question: "What has hands but cannot clap?",
+        answer: "A clock."
+    },
+    {
+        question: "What has cities but no houses, forests but no trees, and rivers but no water?",
+        answer: "A map."
+    },
+    {
+        question: "The more you take, the more you leave behind. What are they?",
+        answer: "Footsteps."
+    },
+    {
+        question: "What can travel around the world while staying in one corner?",
+        answer: "A postage stamp."
+    },
+    {
+        question: "What has one eye but cannot see?",
+        answer: "A needle."
+    },
+    {
+        question: "What goes up but never comes down?",
+        answer: "Your age."
+    },
+    {
+        question: "I have branches but no fruit, trunk, or leaves. What am I?",
+        answer: "A bank."
+    },
+    {
+        question: "What has a neck but no head?",
+        answer: "A bottle."
+    },
+    {
+        question: "What belongs to you but other people use it more than you do?",
+        answer: "Your name."
+    },
+    {
+        question: "What has many teeth but cannot bite?",
+        answer: "A comb."
+    },
+    {
+        question: "What can fill a room but takes up no space?",
+        answer: "Light."
+    }
+];
 
-    function newFortune() {
-        const quote = document.getElementById("quote");
-        const randomIndex = Math.floor(Math.random() * fortunes.length);
+let current = 0;
+let solved = 0;
+let used = [];
 
-        quote.textContent = "> " + fortunes[randomIndex];
+document.getElementById("total").textContent = riddles.length;
+
+function displayRiddle() {
+    if (used.length === riddles.length) {
+        document.getElementById("riddle").textContent =
+            "You have completed every riddle! Great job.";
+        document.getElementById("answer").style.display = "none";
+        document.getElementById("number").textContent = "MISSION COMPLETE";
+        return;
     }
 
-    newFortune();
+    while (used.includes(current)) {
+        current = Math.floor(Math.random() * riddles.length);
+    }
+
+    used.push(current);
+
+    document.getElementById("number").textContent =
+        "RIDDLE #" + used.length;
+
+    document.getElementById("riddle").textContent =
+        riddles[current].question;
+
+    document.getElementById("answer").textContent = "";
+
+    document.getElementById("answer").style.display = "none";
+}
+
+function showAnswer() {
+    if (used.length === riddles.length &&
+        document.getElementById("number").textContent === "MISSION COMPLETE") {
+        return;
+    }
+
+    const answer = document.getElementById("answer");
+
+    if (answer.style.display === "block") return;
+
+    answer.textContent = "ANSWER: " + riddles[current].answer;
+    answer.style.display = "block";
+
+    solved++;
+    document.getElementById("count").textContent = solved;
+}
+
+function nextRiddle() {
+    if (used.length === riddles.length) {
+        used = [];
+    }
+
+    current = Math.floor(Math.random() * riddles.length);
+    displayRiddle();
+}
+
+current = Math.floor(Math.random() * riddles.length);
+displayRiddle();
 </script>
 
 </body>
